@@ -61,6 +61,9 @@ class Adapter(val items: List<Medecine>, private val clickListener: (Medecine) -
                 //Navigation
                 val intent = Intent(itemView.context, MedDescriptionActivity::class.java)
                 intent.putExtra("name", itemView.textViewLarge.text)
+                intent.putExtra("id", med.id)
+                intent.putExtra("pic", med.pics[med.id])
+                intent.putExtra("descr", med.description)
                 itemView.context.startActivity(intent)
 
                 //NavControler.navigate(R.id.action_homeFragment_to_description) //action_homeFragment_to_description
