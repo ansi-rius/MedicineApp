@@ -8,13 +8,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.a3.MedDescriptionActivity
 import kotlinx.android.synthetic.main.list_item_view.view.*
-import android.content.res.Resources
-import android.widget.Button
-import androidx.appcompat.content.res.AppCompatResources.getDrawable
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
-import com.example.a3.MainActivity
 import com.example.a3.Medecine
 import com.example.a3.R
 
@@ -64,7 +59,8 @@ class Adapter(val items: List<Medecine>, private val clickListener: (Medecine) -
             itemView.setOnClickListener{
                 itemView.setBackgroundColor(Color.parseColor("#C8C8C8"))
                 //Navigation
-                val intent = Intent(itemView.context, MainActivity::class.java)
+                val intent = Intent(itemView.context, MedDescriptionActivity::class.java)
+                intent.putExtra("name", itemView.textViewLarge.text)
                 itemView.context.startActivity(intent)
 
                 //NavControler.navigate(R.id.action_homeFragment_to_description) //action_homeFragment_to_description
