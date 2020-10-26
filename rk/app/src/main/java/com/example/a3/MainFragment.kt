@@ -8,10 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import okhttp3.*
+import org.json.JSONObject
 import java.io.IOException
 
 class MainFragment : Fragment() {
@@ -46,7 +49,7 @@ class MainFragment : Fragment() {
     }
 
     fun fetchJson() {
-        val url = "https://jsonplaceholder.typicode.com/posts"
+        val url = "https://reqres.in/api/users/2"
 
         val request = Request.Builder().url(url).build()
 
@@ -54,13 +57,22 @@ class MainFragment : Fragment() {
         client.newCall(request).enqueue(object: Callback {
             override  fun onResponse(call: Call?, response: Response?){
                 val body = response?.body()?.string()
+                println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
                 println(body)
 
                 val gson = GsonBuilder().create()
 
-                val news = gson.fromJson(body, NewsList::class.java)
+                //val news = gson.fromJson(body, NewsList::class.java)
 
+                val jsonObject = JSONObject(body)
+                val news = jsonObject.getJSONObject("ad").getString("url")
 
+                //val news: NewsList = Gson().fromJson(body, NewsList::class.java)
+                var textView: TextView? = null
+                textView = activity?.findViewById(R.id.textViewNews)
+                textView?.text = news
+                println("CheckNews")
+                println(news.toString())
 
             }
 
@@ -72,5 +84,25 @@ class MainFragment : Fragment() {
     }
 }
 
-class News(val id: Int, val userId: Int, val title: String, val body: String)
-class NewsList(val news: List<News>)
+/*
+*
+* {
+    "data": {
+        "id": 2,
+        "email": "janet.weaver@reqres.in",
+        "first_name": "Janet",
+        "last_name": "Weaver",
+        "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128.jpg"
+    },
+    "ad": {
+        "company": "StatusCode Weekly",
+        "url": "http://statuscode.org/",
+        "text": "A weekly newsletter focusing on software development, infrastructure, the server, performance, and the stack end of things."
+    }
+}
+* */
+
+class News(val data: DataCustome, val ad: AD)
+class DataCustome(val id: Int, val email: String, val first_name: String, val last_name: String, val avatar: String)
+class AD(val company: String, val url: String, val text: String)
+class NewsList(val news: News)
