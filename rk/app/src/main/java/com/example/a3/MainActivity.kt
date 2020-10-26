@@ -1,11 +1,13 @@
 package com.example.a3
 
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.SearchView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
@@ -22,9 +24,16 @@ class MainActivity : AppCompatActivity() {
     var listOfMedecines: ArrayList<Medecine> = ArrayList()
     var listOfMedecinesSearch: ArrayList<Medecine> = ArrayList()
 
+    var themeStat = false
+/*
+    var appSettingPrefs: SharedPreferences = getSharedPreferences("AppSettingPrefs", 0)
+    var sharedPrefsEdit: SharedPreferences.Editor = appSettingPrefs.edit()
+    var isNightModeOn: Boolean = appSettingPrefs.getBoolean("NightMode", false)
+*/
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView (R.layout.activity_main)
+
 
 
         for (i in 0..15) {
@@ -86,7 +95,30 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item?.itemId){
+            R.id.darkTheme -> changeTheme()
+        }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun changeTheme(){
+        if (themeStat == false){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            themeStat = true
+        }else{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            themeStat = false
+        }
+        /*
+        if (isNightModeOn){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            sharedPrefsEdit.putBoolean("NightMode", false)
+            sharedPrefsEdit.apply()
+        }else{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            sharedPrefsEdit.putBoolean("NightMode", true)
+            sharedPrefsEdit.apply()
+        }*/
     }
 
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#009688"
+              android:background="@color/mainBackground"
     tools:context="com.example.a3.MedDescriptionActivity"
     android:orientation="vertical">
 
@@ -28,7 +28,7 @@
         android:gravity="center"
         android:scrollbarAlwaysDrawVerticalTrack="false"
         android:text="TextView"
-        android:textColor="@android:color/black"
+        android:textColor="@color/textColor"
         android:textSize="30sp"
         android:textStyle="bold" />
 
@@ -38,6 +38,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:gravity="center"
+        android:textColor="@color/textColor"
         android:text="200"
         android:textSize="20sp" />
 
@@ -51,7 +52,7 @@
         android:scrollbarAlwaysDrawVerticalTrack="false"
         android:scrollbars = "vertical"
         android:text="Описание: \n"
-        android:textColor="@android:color/black"
+        android:textColor="@color/textColor"
         android:textSize="20sp" />
 
 
