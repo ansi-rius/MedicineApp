@@ -6,8 +6,14 @@
         android:id="@+id/search"
         android:title="Search"
         android:icon="@drawable/search"
+        android:iconTintMode="src_in"
         app:showAsAction="always|collapseActionView"
         app:actionViewClass="android.widget.SearchView">
 
+    </item>
+    <item
+        android:id="@+id/darkTheme"
+        android:title="Change Theme"
+        app:showAsAction="never">
     </item>
 </menu>
