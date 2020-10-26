@@ -10,11 +10,16 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.google.gson.GsonBuilder
+import okhttp3.*
+import java.io.IOException
 
 class MainFragment : Fragment() {
 
     var navController: NavController? = null
     private var mButtonOpenMap: Button? = null
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,5 +40,37 @@ class MainFragment : Fragment() {
             val mapIntent = Intent(Intent.ACTION_VIEW, location)
             startActivity(mapIntent)
         }
+
+        fetchJson()
+
+    }
+
+    fun fetchJson() {
+        val url = "https://jsonplaceholder.typicode.com/posts"
+
+        val request = Request.Builder().url(url).build()
+
+        val client = OkHttpClient()
+        client.newCall(request).enqueue(object: Callback {
+            override  fun onResponse(call: Call?, response: Response?){
+                val body = response?.body()?.string()
+                println(body)
+
+                val gson = GsonBuilder().create()
+
+                val news = gson.fromJson(body, NewsList::class.java)
+
+
+
+            }
+
+            override fun onFailure(call: Call, e: IOException) {
+                println("Failed to exec req")
+            }
+        })
+
     }
 }
+
+class News(val id: Int, val userId: Int, val title: String, val body: String)
+class NewsList(val news: List<News>)

@@ -6,6 +6,8 @@
     tools:context=".MainFragment">
 
 
+
+
     <Button
         android:id="@+id/buttonMedList"
         android:layout_width="wrap_content"
@@ -30,4 +32,12 @@
         android:layout_marginBottom="28dp"
         android:duplicateParentState="false"
         android:text="Карта" />
+
+    <TextView
+        android:id="@+id/textViewNews"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_margin="50dp"
+        android:gravity="center"
+        android:text="TextView" />
 </RelativeLayout>
