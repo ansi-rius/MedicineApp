@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.Adapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_med_list.*
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -35,16 +36,15 @@ class MainActivity : AppCompatActivity() {
         setContentView (R.layout.activity_main)
 
 
-
         for (i in 0..15) {
             val med = Medecine()
             med.id = i
             listOfMedecines.add(med)
             listOfMedecinesSearch.add(med)
         }
-        my_recycler_view.layoutManager = LinearLayoutManager(this)
+        /*my_recycler_view.layoutManager = LinearLayoutManager(this)
         my_recycler_view.setHasFixedSize(true)
-        my_recycler_view.adapter = Adapter(listOfMedecinesSearch, { med -> medItemClicked(med) })
+        my_recycler_view.adapter = Adapter(listOfMedecinesSearch, { med -> medItemClicked(med) })*/
 
         NavControler = findNavController(R.id.nav_fragment)
     }
