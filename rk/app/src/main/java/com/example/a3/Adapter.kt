@@ -57,7 +57,7 @@ class Adapter(val items: List<Medecine>, private val clickListener: (Medecine) -
 
             itemView.setOnClickListener { clickListener(med) }
             itemView.setOnClickListener{
-                itemView.setBackgroundColor(Color.parseColor("#C8C8C8"))
+                //itemView.setBackgroundColor(Color.parseColor("#C8C8C8"))
                 //Navigation
                 val intent = Intent(itemView.context, MedDescriptionActivity::class.java)
                 intent.putExtra("name", itemView.textViewLarge.text)
